@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Notes | Shriaknth</title>
+    <link href="sytles.css" rel="stylesheet" />
+
+</head>
+    <body class="note-body">
+        <div class="sidebar">
+            <h2> Notes </h2>
+            <img class="note-img" src="images/notes.svg" />
+            <ul class="nav">
+                <li>
+                    <a href="#">
+                        <i class="note note-container"></i>
+                        <span>Untitled Notes</span>
+                    </a>
+                </li>
+
+                <li>
+                    <a href="#">
+                        <i class="note new-notes" area-hidden="true"></i>
+                        <img class="notes-btn" src="images/plus.svg" />
+                        <span>New Notes</span>
+                        
+                    </a>
+                </li>
+
+                <li>
+                    <a href="#">
+                        <i class="btn delete-btn" onclick="deleteNote(this.id)"></i>
+                        <img class="delete-icon" src="images/delete.svg" alt="delete this note"/>
+                        <span>Delete Notes</span>
+                    </a>
+                </li>
+
+            </ul>
+        </div>
+
+        <div class="main">
+            <h2> Add notes</h2>
+            <img class="main-img" src="images/add_notes-2.svg" />
+        </div>
+
+    </body>
+</html>

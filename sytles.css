@@ -1,0 +1,97 @@
+/* colors
+#ED1C5B;
+#E20E4B; */
+
+.root {
+    --primary-color: #F84249;
+    --secondary-color: #232B2B;
+    --three: #8DF3C6;
+}
+/* reset*/
+{
+    margin: 0;
+    padding: 0;
+    text-decoration: none:
+}
+
+body {
+    box-sizing: border-box;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+
+.sidebar {
+    position: fixed;
+    background: #B5ECF7;
+    width: 200px;
+    height: 100%;
+    top: 0;
+    left: 0;
+    z-index: 1;
+}
+
+.sidebar h2 {
+    text-align: center;
+    font-size: 20px;
+    text-transform: uppercase;
+    color: #20639B;
+    background: #B5ECF7;
+    padding: 20px;
+}
+
+.sidebar .note-img  {
+    max-width: 200px;
+    display: block;
+    margin: auto;
+}
+
+.sidebar ul li {
+    margin: 30px 0;
+}
+
+.sidebar ul li a {
+    text-align: center;
+    display: block;
+    color: #20639B;
+    padding: 0 20px;
+}
+
+.sidebar .notes-btn {
+    width: 1.5rem;
+    height: 1.5rem;
+    display: block;
+    margin: auto;
+}
+
+.sidebar .delete-icon {
+    width: 1.5rem;
+    height: 1.5rem;
+    display: block;
+    margin: auto;
+    /* vertical-align: bottom; */
+    bottom: 2px;
+}
+
+.sidebar ul li a:hover {
+    text-align: left;
+    color: #ED553B;
+    margin-left: 20px;
+    transition: 0.4s;
+}
+
+.note-body {
+    background-color: #EDFBFB;
+}
+.main {
+    margin-left: 200px;
+    padding: 5px;
+}
+
+.main h2 {
+    margin-top: 20px;
+    color: #438bc7;
+}
+
+.main-img {
+    max-width: 100%;
+}
+
