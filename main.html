@@ -1,48 +1,73 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Notes | Shriaknth</title>
+    <title>Notes | Smalawad</title>
     <link href="sytles.css" rel="stylesheet" />
 
 </head>
-    <body class="note-body">
+
+<body class="note-body">
+    <input type="checkbox" id="switch-button">
+    <label for="switch-button">
+        <i class="day-mode"> day</i>
+        <i class="night-mode"> night</i>
+    </label>
+    <div class="content">
+
+        <div class="main">
+            <h2> Noteshelf</h2>
+            <!-- <img class="main-img" src="images/add_notes-2.svg" /> -->
+
+            <div>
+                <input id="text-title" type="text" placeholder="Untitiled"></input>
+                <textarea id="text-body" type="text" placeholder="Create Notes"></textarea><br />
+            </div>
+            <div class="btn-delete delete-note">
+                <!-- <section for="delete-note"> -->
+                <img src="images/delete.svg" class="delete-icon" alt="delete notes">
+                <span>Delete</span>
+                <!-- </section> -->
+            </div>
+            <div class="btn-save save-note">
+                <span>Save</span>
+            </div>
+            
+        </div>
         <div class="sidebar">
             <h2> Notes </h2>
             <img class="note-img" src="images/notes.svg" />
-            <ul class="nav">
-                <li>
-                    <a href="#">
-                        <i class="note note-container"></i>
-                        <span>Untitled Notes</span>
-                    </a>
-                </li>
 
-                <li>
-                    <a href="#">
-                        <i class="note new-notes" area-hidden="true"></i>
-                        <img class="notes-btn" src="images/plus.svg" />
-                        <span>New Notes</span>
-                        
-                    </a>
-                </li>
+            <div class="container notestype">
+                <!-- <button class="new notestype"> -->
+                <!-- <dev class="notes"> -->
+                    <!-- <h2>saved</h2> -->
+                <h1 class="untitled-note">Untitiled</h1>
+                <hr class="underline"color="#20639B" size="0.5px"> 
+                <p class="note-content">Note</p>
+                <!-- </dev> -->
+                <!-- </button> -->
+            </div>
 
-                <li>
-                    <a href="#">
-                        <i class="btn delete-btn" onclick="deleteNote(this.id)"></i>
-                        <img class="delete-icon" src="images/delete.svg" alt="delete this note"/>
-                        <span>Delete Notes</span>
-                    </a>
-                </li>
+            <!-- <div class="notes-component" > -->
+            <div class="btn-add add-note">
+                <!-- <button class="btn add-note"> -->
+                <img src="images/plus.svg" class="add-icon" alt="new notes">
+                <span>New Note</span>
+                <!-- </button> -->
+            </div>
 
-            </ul>
         </div>
+        <!-- <div class="text-content">
+            <textarea class="text-area">
 
-        <div class="main">
-            <h2> Add notes</h2>
-            <img class="main-img" src="images/add_notes-2.svg" />
-        </div>
+            </textarea>
+        </div> -->
+    </div>
+    
+    <script src="app.js" charset="utf-8"></script>
+</body>
 
-    </body>
 </html>
