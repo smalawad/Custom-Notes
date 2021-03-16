@@ -1,126 +1,245 @@
-var newNotesEvent = document.querySelector(".add-note");
-// var newTitle = document.querySelector("")
-var notesHeading = document.getElementById("text-title").value;
-var notesBody = document.getElementById("text-body").value;
-var untitledNote = document.getElementsByClassName("untitled-note");
-var notesContent = document.getElementsByClassName("notes-body");
-var notes = {
-    // key: 'test',
-    // note: 'content'
-};
+const newNotesEvent = document.querySelector(".add-note");
+const notesList = document.querySelector(".notes-list");
+const saveNotesEvent = document.querySelector(".save-note");
 
-function isNotesEmpty() {
-    var numberOfNotes = notes.length;
-    if(notes[numberOfNotes - 1].title === "" && notes[numberOfNotes - 1].note === "") {
-        return true;
+const notesHeading = document.querySelector(".text-title");
+const notesBody = document.querySelector(".text-body");
+const deleteNotesEvent = document.querySelector(".delete-note");
+// var untitledNote = document.getElementsByClassName("untitled-note");
+// var notesContent = document.getElementsByClassName("notes-body");
+
+
+// Events
+document.addEventListener("DOMContentLoaded", getNotes);
+newNotesEvent.addEventListener("click", addNotes);
+// saveNotesEvent.addEventListener("click", saveNotes);
+deleteNotesEvent.addEventListener("click", deleteNotes);
+
+
+// functions
+function getNotes() {
+    // If local storage is empty than load new notes with untitled - title and notes body with notes.
+
+    let notes;
+
+    if (localStorage.getItem("notes") == null) {
+        notes = [];
+    } else {
+        notes = JSON.parse(localStorage.getItem("notes"));
     }
-    else {
-        return false;
-    }
+
+    
+    notes.forEach(function (note) {
+        console.log(note.note);
+        // Notes DIV
+        const notesDiv = document.createElement("div");
+        notesDiv.classList.add("main-container");
+
+        // Create heading
+        const notesTitle = document.createElement("div");
+        notesTitle.classList.add("notes-title");
+        
+        // Create para
+        const newNotes = document.createElement('p');
+        newNotes.classList.add("notes-item");
+        notesTitle.appendChild(newNotes);
+
+        notesDiv.appendChild(notesTitle);
+
+        if (note.title === "" || note.note === "") {
+            notesTitle.innerText = "Untitled note";
+            newNotes.innerText = "Note";
+        } else {
+            notesTitle.innerText = note.title;
+            newNotes.innerText = note.note;
+        }
+
+        // APPEND TO LIST (div)
+        notesList.appendChild(notesDiv);
+    });
+
 }
 
-newNotesEvent.addEventListener("click", ()=>{
-    alert("clicked add notes!");
+function saveLocalNotes() {
 
+    // CHECK already have things in there?
+    let notes;
+    let title;
+    let note;
 
-});
-
-var deleteNotesEvent = document.querySelector(".delete-note");
-deleteNotesEvent.addEventListener("click", () => {
-    alert("clicked delete note!");
-
-    var noOfNotes = notes.length;
-    console.log("in delete: " , noOfNotes);
-    alert(noOfNotes);
-    for (var i =0; i < noOfNotes; i++) {
-        alert("in d loop ", i);
+    title = notesHeading.value;
+    note = notesBody.value;
+    if (localStorage.getItem("notes") === null) {
+        notes = [];
+    } else {
+        notes = JSON.parse(localStorage.getItem("notes"));
     }
 
-});
+    // notes.push({heading, content});
+    notes.push({
+        title,
+        note
+    });
+    localStorage.setItem("notes", JSON.stringify(notes));
 
+}
 
-var notesTypeEvent = document.querySelector(".notestype");
+function addNotes() {
+    // alert("clicked add notes!");
 
-notesTypeEvent.addEventListener("click", () => {
-    alert("notes type");
-});
+    // // Todo DIV
+    // const notesDiv = document.createElement("div");
+    // notesDiv.classList.add("notes");
 
-var saveNotes = document.querySelector(".save-note");
-saveNotes.addEventListener("click", () => {
-    // alert("Hey! you are save note");
-    var notesHeading = document.getElementById("text-title").value;
-    var notesBody = document.getElementById("text-body").value;
-    var untitledNote = document.getElementsByClassName("untitled-note");
-    var notesContent = document.getElementsByClassName("notes-body");
-    
+    // // Create LI
+    // const newNotes = document.createElement('p');
+    // newNotes.classList.add("notes-item");
+    // notesDiv.appendChild(newNotes);
 
-    console.log("Heading: " + notesHeading);
-    console.log("Notes: " + notesBody);
-    // console.log(untitledNote);
-    // console.log(notesContent);
-    localStorage.setItem(notesHeading, notesBody);
-    // localStorage.clear();
-    console.log(localStorage);
+    const notesDiv = document.createElement("div");
+    notesDiv.classList.add("main-container");
 
-    var divElement = document.getElementsByClassName(".notestype");
-    console.log(divElement.value);
-    var title = document.createElement('h1');
-    // title.class = 'untitled-note';
-    title.innerText = notesHeading;
-    console.log(title);
+    // Create heading
+    const notesTitle = document.createElement("div");
+    notesTitle.classList.add("notes-title");
+   
+    // Create para
+    const newNotes = document.createElement('p');
+    newNotes.classList.add("notes-item");
+    notesTitle.appendChild(newNotes);
 
-    var noteContent = document.createElement('p');
-    // noteContent.class = 'note-content';
-    noteContent.innerText = notesBody;
-    console.log(noteContent);
+    notesDiv.appendChild(notesTitle);
 
-    // notes.setItem(notesHeading, notesBody);
-    // notes.push(notesHeading, notesBody);
-    Object.assign(notes, {notesBody, notesHeading});
-    Object.assign(notes, localStorage);
-    let noOfElements = notes.length;
-    alert("for loop notes elements");
-    alert(noOfElements);
-    for(var elements = 0; elements < noOfElements; elements++){
-        // console.log(notes[elements].key, " : ", notes[elements].value);
-        console.log(elements);
+    // Todo DIV
+    // const notesDiv = document.createElement("div");
+
+    // notesDiv.classList.add("notes");
+    // // Create LI
+    // const newNotes = document.createElement('p');
+
+    // newNotes.classList.add("notes-item");
+    // notesDiv.appendChild(newNotes);
+
+    if (notesHeading.value === "" || notesBody.value === "") {
+
+        notesTitle.innerText = "Untitled note";
+        newNotes.innerText = "Note";
+        alert("new notes is already open!");
+    } else {
+        notesTitle.innerText = notesHeading.value;
+        newNotes.innerText = notesBody.value;
+
+        saveLocalNotes();
     }
+    // console.log(notesHeading.value);
+    // console.log(notesBody.value);
+    // SAVE to local storage
+    // saveLocalTodos(todoInput.value);
 
-    // console.log("notes ==> + ", notes);
-    
-    // divElement.appendChild(title);
-    // var title = document.getElementsByClassName("container").appendChild(document.createElement('h1'));
-    // title.class = "untitled-note";
-    // title.body = notesHeading;
-    // console.log(title);
-    // .insertAdjacentHTML('<hr class"underline" color="#20639B" size="0.5px"> <p class="note-content">Notes</p>');
-    // untitledNote.innerText = localStorage.key();
-    // notesContent.innerText = localStorage.value();
-});
+    // // CHECK MARK BUTTON
+    // const completedButton = document.createElement("button");
+    // completedButton.innerHTML = '<i class="fas fa-check"></i>';
+    // completedButton.classList.add("complete-btn");
+    // todoDiv.appendChild(completedButton);
+    // // CHECK TRASH BUTTON
+    // const trashButton = document.createElement("button");
+    // trashButton.innerHTML = '<i class="fas fa-trash"></i>';
+    // trashButton.classList.add("delete-btn");
+    // todoDiv.appendChild(trashButton);
+
+    // APPEND TO LIST (div)
+    notesList.appendChild(notesDiv);
+
+    notesHeading.value = "";
+    notesBody.value = "";
+}
+
+// deleteNotesEvent.addEventListener("click", () => {
+//     alert("clicked delete note!");
+
+
+// });
+
+
+// var notesTypeEvent = document.querySelector(".notestype");
+
+// notesTypeEvent.addEventListener("click", () => {
+//     alert("notes type");
+// });
+
+// save notes 
+// function saveNotes() {
+
+//     console.log(notesHeading.value);
+//     console.log(notesBody.value);
+
+//     if(notesHeading.value === "" || notesBody.value === "") {
+//         alert("notes heading or body can't be empty!");
+//     }
+
+//     // Todo DIV
+//     const notesDiv = document.createElement("div");
+//     notesDiv.innerText = notesHeading.value;
+//     notesDiv.classList.add("notes");
+//     // Create LI
+//     const newNotes = document.createElement('p');
+//     newNotes.innerText = notesBody.value;
+//     newNotes.classList.add("notes-item");
+//     notesDiv.appendChild(newNotes);
+
+
+// }
 
 
 // select the notes color
-function pickNoteColor (numberOfColors) {
-    return Math.floor(Math.random() * numberOfColors);
+// function pickNoteColor (numberOfColors) {
+//     return Math.floor(Math.random() * numberOfColors);
+// }
+
+// var notesBodyColor = ["#ff8585", "#ffb396", "#fff5c0", "#86aba1","#c9cbff", "#cfdac8", "#cae4db", "#ffd56b", "#96bb7c"];
+// var colorIndex = pickNoteColor(notesBodyColor.length);
+
+// notesTypeEvent.style.backgroundColor = String(notesBodyColor[colorIndex]);
+
+// // new notes 
+// function newNotes() {
+
+// }
+
+function  removeLocalNotes(note) {
+
+    // CHECK -- DO I already have thing in there?
+    let notes;
+    if (localStorage.getItem("notes") === null) {
+        notes = [];
+    } else {
+        notes = JSON.parse(localStorage.getItem("notes"));
+    }
+
+    const noteIndex = note.children[0].innerText;
+    notes.splice(notes.indexOf(noteIndex), 1);
+    localStorage.setItem("notes", JSON.stringify(notes));
+
 }
-
-var notesBodyColor = ["#ff8585", "#ffb396", "#fff5c0", "#86aba1","#c9cbff", "#cfdac8", "#cae4db", "#ffd56b", "#96bb7c"];
-var colorIndex = pickNoteColor(notesBodyColor.length);
-
-notesTypeEvent.style.backgroundColor = String(notesBodyColor[colorIndex]);
-
-// new notes 
-function newNotes() {
-    
-}
-// save notes 
-function saveNotes() {
-
-}
-
 // delete notes
-function deleteNotes () {
-    var key = document.getElementById('key').value();
-    localStorage.removeItem(key);
-    console.log("deleted notes sucessfully!");
+function deleteNotes(e) {
+    // var key = document.getElementById('key').value();
+    // localStorage.removeItem(key);
+    // console.log("deleted notes sucessfully!");
+
+    const item = e.target;
+
+    // Delete note
+    if (item.classList[0] === 'delete-btn') {
+        const note = item.parentElement;
+
+        // Animation
+        note.classList.add("fall");
+        // remove from localstorage
+        removeLocalNotes(note);
+        note.addEventListener("transitionend", function () {
+            note.remove();
+        });
+
+    }
 }
