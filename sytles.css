@@ -69,7 +69,7 @@ body {
 
 .notes-container {
 
-    padding: 20px 15px 15px 15px;
+    /* padding: 20px 15px 15px 15px;
     margin: 15px;
     height: 100px;
     width: 220px;
@@ -81,7 +81,12 @@ body {
     align-items: center;
     box-shadow: none;
     cursor: pointer;
-    justify-content: center;
+    justify-content: center; */
+    
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    /* background-color: #bfe6d5; */
 }
 
 /* .untitled-note {
@@ -97,8 +102,8 @@ body {
     border-color: transparent;
 } */
 
-.notes {
-    font-size: 18px;
+.notes-title {
+    /* font-size: 18px;
     padding: 0px 20px 0px 0px;
     margin-left: 10px;
     margin-top: 1px;
@@ -107,7 +112,26 @@ body {
     overflow: hidden;
     text-align: center;
     display: flex;
-    border-color: transparent;
+    border-color: transparent; */
+    /* font-family: "Open Sans", sans-serif;
+  font-weight: bold;
+  font-size: 2rem;
+  margin: 2rem 0;
+  color: var(--button-color);
+  resize: none;
+  height: auto;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 4;
+  -webkit-box-orient: vertical; */
+
+  font-size: 1.2rem;
+  font-weight: bold;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
 }
 
 /* .note-content {
@@ -121,14 +145,44 @@ body {
 } */
 
 .notes-item {
-    font-size: 14px;
+    /* font-size: 14px;
     padding: 0px 20px 0px 0px;
     margin-left: 10px;
     background-color: var(--third-color);
     color: var(--fourth-color);
     overflow: hidden;
     text-align: left;
-    display: block;
+    display: block; */
+    /* font-family: "Open Sans", sans-serif;
+  height: 100%;
+  resize: none;
+  font-size: 1.2rem;
+  color: var(--secondary-text);
+  line-height: 2rem; */
+
+  font-size: 1rem;
+  color: var(--secondary-text);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  margin-top: 0.5rem;
+}
+
+.notes-item-selected {
+    background-color: #bfe6d5;
+    color: #20639B;
+}
+  
+.notes-item,
+.notes-item-selected {
+  padding: 1rem;
+  margin: 0.5rem -0.8rem;
+  cursor: pointer;
+  border-radius: 1rem;
+  transition: color, background-color 0.3s ease-in-out;
+  color: #fafafa;
 }
 
 .btn-add {
