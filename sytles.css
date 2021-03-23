@@ -46,61 +46,17 @@ body {
 .sidebar .note-img {
     max-width: 120px;
     padding-top: 10px;
+    padding-bottom: 10px;
     display: block;
     margin: auto;
 }
 
-/* .container {
-
-    padding: 20px 15px 15px 15px;
-    margin: 15px;
-    height: 100px;
-    width: 220px;
-    letter-spacing: 1px;
-    border-top-left-radius: 10%;
-    border-bottom-right-radius: 10%;
-    background-color: #bfe6d5;
-    color: #20639B;
-    align-items: center;
-    box-shadow: none;
-    cursor: pointer;
-    justify-content: center;
-} */
-
 .notes-container {
-
-    /* padding: 20px 15px 15px 15px;
-    margin: 15px;
-    height: 100px;
-    width: 220px;
-    letter-spacing: 1px;
-    border-top-left-radius: 10%;
-    border-bottom-right-radius: 10%;
-    background-color: #bfe6d5;
-    color: #20639B;
-    align-items: center;
-    box-shadow: none;
-    cursor: pointer;
-    justify-content: center; */
     
     display: flex;
     flex-direction: column;
     height: 100%;
-    /* background-color: #bfe6d5; */
 }
-
-/* .untitled-note {
-    font-size: 18px;
-    padding: 0px 20px 0px 0px;
-    margin-left: 10px;
-    margin-top: 1px;
-    background-color: var(--third-color);
-    font-weight: bold;
-    overflow: hidden;
-    text-align: center;
-    display: flex;
-    border-color: transparent;
-} */
 
 .main-container{
   padding: 1rem;
@@ -108,14 +64,12 @@ body {
   cursor: pointer;
   text-align: left;
   border-radius: 1rem;
-  /* background-color: #c6ece6; */
   transition: color, background-color 0.3s ease-in-out;
   
 }
 
 .main-container:hover {
     background-color: #7fb9e9;
-    /* color: #232B2B; */
 }
 
 .notes-title {
@@ -129,16 +83,6 @@ body {
   -webkit-box-orient: vertical;
   color: #20639B;
 }
-
-/* .note-content {
-    font-size: 14px;
-    padding-bottom: 0px;
-    margin-left: 10px;
-    background-color: var(--third-color);
-    color: var(--fourth-color);
-    overflow: hidden;
-    
-} */
 
 .notes-item {
     
@@ -157,7 +101,7 @@ body {
     color: #20639B;
 }
   
-.notes-item,
+/* .notes-item,
 .notes-item-selected {
   padding: 1rem;
   margin: 0.5rem -0.8rem;
@@ -165,7 +109,7 @@ body {
   border-radius: 1rem;
   transition: color, background-color 0.3s ease-in-out;
   color: #20639B;
-}
+} */
 
 .btn-add {
    

@@ -1,7 +1,8 @@
 const newNotesEvent = document.querySelector(".add-note");
 const notesList = document.querySelector(".notes-list");
 const saveNotesEvent = document.querySelector(".save-note");
-// const selectNotesEvent = document.querySelector(".main-container");
+const modeEvent = document.querySelector("#switch-button");
+const selectNotesEvent = document.querySelector(".main-container");
 
 const notesHeading = document.querySelector(".text-title");
 const notesBody = document.querySelector(".text-body");
@@ -12,6 +13,7 @@ const deleteNotesEvent = document.querySelector(".delete-note");
 document.addEventListener("DOMContentLoaded", getNotes);
 newNotesEvent.addEventListener("click", addNotes);
 saveNotesEvent.addEventListener("click", saveNotes);
+
 // selectNotesEvent.addEventListener("click", selectedNotes);
 deleteNotesEvent.addEventListener("click", deleteNotes);
 
@@ -25,13 +27,13 @@ function createNote (newNote) {
     // Create heading
     const notesTitle = document.createElement("div");
     notesTitle.classList.add("notes-title");
-    notesTitle.innerText = newNote.title || "Untitled note";
+    notesTitle.innerText = newNote.title ;
     notesDiv.appendChild(notesTitle);
 
     // Create para
     const newNotes = document.createElement("p");
     newNotes.classList.add("notes-item");
-    newNotes.innerText = newNote.note || "Note";
+    newNotes.innerText = newNote.note ;
     notesTitle.appendChild(newNotes);
 
     // APPEND TO LIST (div)
@@ -47,31 +49,35 @@ function loadEmptyNotes () {
 //     // const selectedTitle = document.
 //     alert("you are in selected notes!") ;
 // }
-// function defaultNotes() {
-//     var title: "Welcome To NoteShelf!",
-//     var note: "The custom notes, you can add, edit and delete notes here",
-// }
+function defaultNotes() {
+    var note = [];
+    var notes = [];
+
+    // alert("defaultnote!");
+    note.title = "Welcome to NoteShelf!";
+    note.note = "The custom notes, you can add, edit and delete notes here";
+    createNote (note);
+
+    // console.log(note.note);
+    notes.push(note);
+
+    loadEmptyNotes();
+}
 
 function getNotes() {
     // If local storage is empty than load new notes with untitled - title and notes body with notes.
 
-    let notes;
+    var notes;
 
+    defaultNotes();
+    
     if (localStorage.getItem("notes") == null) {
-        notes = [ 
-            // {
-            //     title: "Welcome To NoteShelf!",
-            //     note: "The custom notes, you can add, edit and delete notes here",
-            // },
-        ];
-
+        notes = [];
     } else {
         notes = JSON.parse(localStorage.getItem("notes"));
     }
-
-    // const todoIndex = todo.children[0].innerText;
-    notes.forEach((note) => {
-        console.log(note.note);
+    
+    notes.forEach((note) => {        
         createNote(note);
     
     });
@@ -95,11 +101,8 @@ function saveNotes() {
         notes = JSON.parse(localStorage.getItem("notes"));
     }
 
-    console.log({title});
-    console.log({note});
-    console.log({newNotes});
     if(title === "" || notes === "") {
-        alert("Empty notes can't be saved");
+        alert("Notes is empty!");
     }
     else {
         createNote(newNotes);
@@ -167,3 +170,4 @@ function deleteNotes(e) {
 
     }
 }
+
