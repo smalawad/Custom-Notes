@@ -1,6 +1,7 @@
 const newNotesEvent = document.querySelector(".add-note");
 const notesList = document.querySelector(".notes-list");
 const saveNotesEvent = document.querySelector(".save-note");
+// const selectNotesEvent = document.querySelector(".main-container");
 
 const notesHeading = document.querySelector(".text-title");
 const notesBody = document.querySelector(".text-body");
@@ -10,60 +11,82 @@ const deleteNotesEvent = document.querySelector(".delete-note");
 // Events
 document.addEventListener("DOMContentLoaded", getNotes);
 newNotesEvent.addEventListener("click", addNotes);
+saveNotesEvent.addEventListener("click", saveNotes);
+// selectNotesEvent.addEventListener("click", selectedNotes);
 deleteNotesEvent.addEventListener("click", deleteNotes);
 
 
 // functions
+function createNote (newNote) {
+    // Notes DIV
+    const notesDiv = document.createElement("div");
+    notesDiv.classList.add("main-container");
+
+    // Create heading
+    const notesTitle = document.createElement("div");
+    notesTitle.classList.add("notes-title");
+    notesTitle.innerText = newNote.title || "Untitled note";
+    notesDiv.appendChild(notesTitle);
+
+    // Create para
+    const newNotes = document.createElement("p");
+    newNotes.classList.add("notes-item");
+    newNotes.innerText = newNote.note || "Note";
+    notesTitle.appendChild(newNotes);
+
+    // APPEND TO LIST (div)
+    notesList.appendChild(notesDiv);
+}
+
+function loadEmptyNotes () {
+    notesHeading.value = "";
+    notesBody.value = "";
+}
+// function selectedNotes (){
+//     // Display the selected notes back to main notes from sidebar
+//     // const selectedTitle = document.
+//     alert("you are in selected notes!") ;
+// }
+// function defaultNotes() {
+//     var title: "Welcome To NoteShelf!",
+//     var note: "The custom notes, you can add, edit and delete notes here",
+// }
+
 function getNotes() {
     // If local storage is empty than load new notes with untitled - title and notes body with notes.
 
     let notes;
 
     if (localStorage.getItem("notes") == null) {
-        notes = [];
+        notes = [ 
+            // {
+            //     title: "Welcome To NoteShelf!",
+            //     note: "The custom notes, you can add, edit and delete notes here",
+            // },
+        ];
+
     } else {
         notes = JSON.parse(localStorage.getItem("notes"));
     }
 
-    
-    notes.forEach(function (note) {
+    // const todoIndex = todo.children[0].innerText;
+    notes.forEach((note) => {
         console.log(note.note);
-        // Notes DIV
-        const notesDiv = document.createElement("div");
-        notesDiv.classList.add("main-container");
-
-        // Create heading
-        const notesTitle = document.createElement("div");
-        notesTitle.classList.add("notes-title");
-        
-        // Create para
-        const newNotes = document.createElement('p');
-        newNotes.classList.add("notes-item");
-        notesTitle.appendChild(newNotes);
-
-        notesDiv.appendChild(notesTitle);
-
-        if (note.title === "" || note.note === "") {
-            notesTitle.innerText = "Untitled note";
-            newNotes.innerText = "Note";
-        } else {
-            notesTitle.innerText = note.title;
-            newNotes.innerText = note.note;
-        }
-
-        // APPEND TO LIST (div)
-        notesList.appendChild(notesDiv);
+        createNote(note);
+    
     });
-
 }
 
-function saveLocalNotes() {
+function saveNotes() {
 
     // CHECK already have things in there?
-    let notes;
-    let title;
-    let note;
+    var notes;
+    var title;
+    var note;
+    var newNotes = {};
+    newNotes = {title: notesHeading.value, note: notesBody.value};
 
+    // alert("inside savenotes!");
     title = notesHeading.value;
     note = notesBody.value;
     if (localStorage.getItem("notes") === null) {
@@ -72,49 +95,43 @@ function saveLocalNotes() {
         notes = JSON.parse(localStorage.getItem("notes"));
     }
 
-    // notes.push({heading, content});
-    notes.push({
-        title,
-        note
-    });
-    localStorage.setItem("notes", JSON.stringify(notes));
+    console.log({title});
+    console.log({note});
+    console.log({newNotes});
+    if(title === "" || notes === "") {
+        alert("Empty notes can't be saved");
+    }
+    else {
+        createNote(newNotes);
+        
+        // add new notes ready to store
+        notes.push(newNotes);
+
+        // Store new notes to localstorge 
+        localStorage.setItem("notes", JSON.stringify(notes));
+
+        // Clear the notes area for new notes
+        loadEmptyNotes();
+    }
 
 }
 
 function addNotes() {
     // alert("clicked add notes!");
 
-    const notesDiv = document.createElement("div");
-    notesDiv.classList.add("main-container");
+    var newNote = {};
 
-    // Create heading
-    const notesTitle = document.createElement("div");
-    notesTitle.classList.add("notes-title");
-   
-    // Create para
-    const newNotes = document.createElement('p');
-    newNotes.classList.add("notes-item");
-    notesTitle.appendChild(newNotes);
+    if(notesHeading.value === "" || notesBody.value === "") {
+        alert("Empty notes is already open!");
 
-    notesDiv.appendChild(notesTitle);
-
-    if (notesHeading.value === "" || notesBody.value === "") {
-
-        notesTitle.innerText = "Untitled note";
-        newNotes.innerText = "Note";
-        alert("new notes is already open!");
     } else {
-        notesTitle.innerText = notesHeading.value;
-        newNotes.innerText = notesBody.value;
+        newNote = {title: notesHeading.value, note: notesBody.value};
+        createNote(newNote);
 
-        saveLocalNotes();
+        // Clear the notes area for new notes
+        loadEmptyNotes();
     }
-    
-    // APPEND TO LIST (div)
-    notesList.appendChild(notesDiv);
 
-    // notesHeading.value = "";
-    // notesBody.value = "";
 }
 
 function  removeLocalNotes(note) {

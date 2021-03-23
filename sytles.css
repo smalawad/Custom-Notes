@@ -102,29 +102,24 @@ body {
     border-color: transparent;
 } */
 
-.notes-title {
-    /* font-size: 18px;
-    padding: 0px 20px 0px 0px;
-    margin-left: 10px;
-    margin-top: 1px;
-    background-color: var(--third-color);
-    font-weight: bold;
-    overflow: hidden;
-    text-align: center;
-    display: flex;
-    border-color: transparent; */
-    /* font-family: "Open Sans", sans-serif;
-  font-weight: bold;
-  font-size: 2rem;
-  margin: 2rem 0;
-  color: var(--button-color);
-  resize: none;
-  height: auto;
-  text-overflow: ellipsis;
-  display: -webkit-box;
-  -webkit-line-clamp: 4;
-  -webkit-box-orient: vertical; */
+.main-container{
+  padding: 1rem;
+  margin: 0 0.2rem;
+  cursor: pointer;
+  text-align: left;
+  border-radius: 1rem;
+  /* background-color: #c6ece6; */
+  transition: color, background-color 0.3s ease-in-out;
+  
+}
 
+.main-container:hover {
+    background-color: #7fb9e9;
+    /* color: #232B2B; */
+}
+
+.notes-title {
+    
   font-size: 1.2rem;
   font-weight: bold;
   overflow: hidden;
@@ -132,6 +127,7 @@ body {
   display: -webkit-box;
   -webkit-line-clamp: 1;
   -webkit-box-orient: vertical;
+  color: #20639B;
 }
 
 /* .note-content {
@@ -145,21 +141,7 @@ body {
 } */
 
 .notes-item {
-    /* font-size: 14px;
-    padding: 0px 20px 0px 0px;
-    margin-left: 10px;
-    background-color: var(--third-color);
-    color: var(--fourth-color);
-    overflow: hidden;
-    text-align: left;
-    display: block; */
-    /* font-family: "Open Sans", sans-serif;
-  height: 100%;
-  resize: none;
-  font-size: 1.2rem;
-  color: var(--secondary-text);
-  line-height: 2rem; */
-
+    
   font-size: 1rem;
   color: var(--secondary-text);
   overflow: hidden;
@@ -182,13 +164,13 @@ body {
   cursor: pointer;
   border-radius: 1rem;
   transition: color, background-color 0.3s ease-in-out;
-  color: #fafafa;
+  color: #20639B;
 }
 
 .btn-add {
    
     position: absolute;
-    bottom: 90px;
+    bottom: 170px;
     right: 10px;
     border: 2px solid #20639B;
     border-radius: 30px;
@@ -215,6 +197,32 @@ body {
     height: 20px;
     width: 20px;
     margin: 0 6px 0 6px;
+}
+
+.btn-save {
+    
+    position: absolute;
+    bottom: 90px;
+    right: 10px;
+    border: 2px solid #20639B;
+    border-radius: 30px;
+    padding: 5px;
+    margin-left: 50px;
+    cursor: pointer;
+    text-transform: uppercase;
+    display: flex;
+    text-align: center;
+}
+
+.save-note {
+    margin-left: 50px;
+    padding: 16px 0;
+    justify-content: center;
+    background-color: transparent;
+    border: 2px solid #20639B;
+    color: #20639B;
+    min-width: 150px;
+    max-width: 150px;
 }
 
 .btn-delete {
@@ -245,32 +253,6 @@ body {
     width: 20px;
     margin: 0 14px 0 14px;
 }
-
-/* .btn-save {
-    
-    position: absolute;
-    bottom: 90px;
-    right: 10px;
-    border: 2px solid #20639B;
-    border-radius: 30px;
-    padding: 5px;
-    margin-left: 50px;
-    cursor: pointer;
-    text-transform: uppercase;
-    display: flex;
-    text-align: center;
-}
-
-.save-note {
-    margin-left: 50px;
-    padding: 16px 0;
-    justify-content: center;
-    background-color: transparent;
-    border: 2px solid #20639B;
-    color: #20639B;
-    min-width: 150px;
-    max-width: 150px;
-} */
 
 .note-body {
     background-color: #EDFBFB;
