@@ -60,11 +60,26 @@ function selectedNotes (event){
         var selnotes = [];
         selnotes = Object.assign({}, notes[selindex]);
 
+        // console.log(selindex);
         notesHeading.value = selnotes.title;
         notesBody.value = selnotes.note;
 
-        title.style.backgroundColor = "#7fb9e9";
-        // console.log(title);
+        var notesLength = notes.length;
+        for (var noteIndex = 0; noteIndex < notesLength; noteIndex++) {
+            title.style.backgroundColor = "#EDFBFB";
+            if(noteIndex === selindex) {
+                title.style.backgroundColor = "#7fb9e9";
+            }
+            // console.log({title});
+            // } else {
+            //     title.style.backgroundColor = "#7fb9e9";
+            //     console.log("change background color");
+            // }
+        }
+        // console.log()
+        // title.style.backgroundColor = "#7fb9e9";
+        // console.log({notesLength});
+        // console.log(selindex);
         // console.log(title.classList[0]);
         // title.classList[0] = 'main-container-selected';
         // console.log(title.classList[0]);
