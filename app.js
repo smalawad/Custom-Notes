@@ -1,11 +1,11 @@
-const newNotesEvent = document.querySelector(".add-note");
 const notesList = document.querySelector(".notes-list");
-const saveNotesEvent = document.querySelector(".save-note");
 const modeEvent = document.querySelector("#switch-button");
-const selectNotesEvent = document.querySelector(".main-container");
-
 const notesHeading = document.querySelector(".text-title");
 const notesBody = document.querySelector(".text-body");
+const selectNotesEvent = document.querySelector(".notes-container");
+
+const newNotesEvent = document.querySelector(".add-note");
+const saveNotesEvent = document.querySelector(".save-note");
 const deleteNotesEvent = document.querySelector(".delete-note");
 
 
@@ -13,8 +13,7 @@ const deleteNotesEvent = document.querySelector(".delete-note");
 document.addEventListener("DOMContentLoaded", getNotes);
 newNotesEvent.addEventListener("click", addNotes);
 saveNotesEvent.addEventListener("click", saveNotes);
-
-// selectNotesEvent.addEventListener("click", selectedNotes);
+selectNotesEvent.addEventListener("click", selectedNotes);
 deleteNotesEvent.addEventListener("click", deleteNotes);
 
 
@@ -35,20 +34,50 @@ function createNote (newNote) {
     newNotes.classList.add("notes-item");
     newNotes.innerText = newNote.note ;
     notesTitle.appendChild(newNotes);
-
+    
     // APPEND TO LIST (div)
     notesList.appendChild(notesDiv);
+    
 }
 
 function loadEmptyNotes () {
     notesHeading.value = "";
     notesBody.value = "";
 }
-// function selectedNotes (){
-//     // Display the selected notes back to main notes from sidebar
-//     // const selectedTitle = document.
-//     alert("you are in selected notes!") ;
-// }
+
+function selectedNotes (event){
+   // Display the selected notes back to main notes from sidebar
+
+    const item = event.target;
+
+    let notes;
+    if (localStorage.getItem("notes") === null) {
+        notes = [];
+    } else {
+        notes = JSON.parse(localStorage.getItem("notes"));
+    }
+
+    
+    if (item.classList[0] === 'notes-title') {
+        var title = item.parentElement;
+        const note = item.children[0].innerText;
+        
+        var index = notes.findIndex(item => item.note === note);
+        var selnotes = notes[index];
+
+        notesHeading.value = selnotes.title;
+        notesBody.value = selnotes.note;
+
+        // console.log(title);
+        // console.log(title.classList[0]);
+        // title.classList[0] = 'main-container-selected';
+        // console.log(title.classList[0]);
+        // title.classList.add("main-container-selected")
+        // console.log(title.classList);
+    }
+}
+
+
 function defaultNotes() {
     var note = [];
     var notes = [];
@@ -137,7 +166,7 @@ function addNotes() {
 
 }
 
-function  removeLocalNotes(note) {
+function  removeNotes(notesIndex) {
 
     // CHECK -- DO I already have thing in there?
     let notes;
@@ -146,28 +175,40 @@ function  removeLocalNotes(note) {
     } else {
         notes = JSON.parse(localStorage.getItem("notes"));
     }
-
-    const noteIndex = note.children[0].innerText;
-    notes.splice(notes.indexOf(noteIndex), 1);
+   
+    notes.splice(notesIndex, 1);
     localStorage.setItem("notes", JSON.stringify(notes));
 
+    location.reload();
 }
+
 // delete notes
-function deleteNotes(e) {
-    const item = e.target;
+function deleteNotes(event) {
+  
+    const item = event.target;
 
-    // Delete note
-    if (item.classList[0] === 'delete-btn') {
-        const note = item.parentElement;
-
-        // Animation
-        note.classList.add("fall");
-        // remove from localstorage
-        removeLocalNotes(note);
-        note.addEventListener("transitionend", function () {
-            note.remove();
-        });
-
+    let notes;
+    if (localStorage.getItem("notes") === null) {
+        notes = [];
+    } else {
+        notes = JSON.parse(localStorage.getItem("notes"));
     }
-}
 
+    var delnote = notesBody.value;
+    if(delnote === "") {
+        alert("Please select a notes you want to delete");
+    } else {
+    
+        var index = notes.findIndex(item => item.note === delnote);
+
+        removeNotes(index);
+        if (item.classList[0] === 'notes-title') {
+            var title = item.parentElement;
+            const note = item.children[0].innerText;
+            
+            var index = notes.findIndex(item => item.note === note);
+        
+        }
+    }
+    
+}

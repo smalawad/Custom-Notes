@@ -65,13 +65,23 @@ body {
   text-align: left;
   border-radius: 1rem;
   transition: color, background-color 0.3s ease-in-out;
-  
+  display: block;
 }
 
 .main-container:hover {
     background-color: #7fb9e9;
 }
 
+.main-container-selected {
+    padding: 1rem;
+    margin: 0 0.2rem;
+    cursor: pointer;
+    text-align: left;
+    border-radius: 1rem;
+    transition: color, background-color 0.3s ease-in-out;
+    display: block;
+    color: #20639B;
+}
 .notes-title {
     
   font-size: 1.2rem;
