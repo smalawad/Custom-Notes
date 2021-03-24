@@ -1,13 +1,10 @@
-/* colors
-#ED1C5B;
-#E20E4B; */
 
 .root {
     --primary-color: #F84249;
     --secondary-color: #232B2B;
     --third-color: #8DF3C6;
-    --fourth-color:  #20639B;
-    --day-color:#63500c;
+    --fourth-color: #20639B;
+    --day-color: #63500c;
     --night-ligth: #fce38a;
 }
 
@@ -24,7 +21,6 @@ body {
     width: 300px;
     height: 100%;
     overflow-y: scroll;
-    /* transition: background-color 0.25s ease-in */
     top: 0;
     left: 0;
     z-index: 1;
@@ -37,9 +33,6 @@ body {
     text-align: center;
     font-size: 20px;
     text-transform: uppercase;
-    /* margin: 0px;
-    top: 10px;
-    padding: 30px 0 0 20px; */
     color: #20639B;
 }
 
@@ -52,20 +45,20 @@ body {
 }
 
 .notes-container {
-    
+
     display: flex;
     flex-direction: column;
     height: 100%;
 }
 
-.main-container{
-  padding: 1rem;
-  margin: 0 0.2rem;
-  cursor: pointer;
-  text-align: left;
-  border-radius: 1rem;
-  transition: color, background-color 0.3s ease-in-out;
-  display: block;
+.main-container {
+    padding: 1rem;
+    margin: 0 0.2rem;
+    cursor: pointer;
+    text-align: left;
+    border-radius: 1rem;
+    transition: color, background-color 0.3s ease-in-out;
+    display: block;
 }
 
 .main-container:hover {
@@ -82,47 +75,37 @@ body {
     display: block;
     color: #20639B;
 }
+
 .notes-title {
-    
-  font-size: 1.2rem;
-  font-weight: bold;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  display: -webkit-box;
-  -webkit-line-clamp: 1;
-  -webkit-box-orient: vertical;
-  color: #20639B;
+    white-space: nowrap;
+    font-size: 22px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+    color: #20639B;
 }
 
 .notes-item {
-    
-  font-size: 1rem;
-  color: var(--secondary-text);
-  overflow: hidden;
-  text-overflow: ellipsis;
-  display: -webkit-box;
-  -webkit-line-clamp: 2;
-  -webkit-box-orient: vertical;
-  margin-top: 0.5rem;
+    white-space: nowrap;
+    font-size: 16px;
+    color: var(--secondary-text);
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    margin-top: 0.5rem;
 }
 
 .notes-item-selected {
-    background-color: #bfe6d5;
+    background-color: #7fb9e9;
     color: #20639B;
 }
-  
-/* .notes-item,
-.notes-item-selected {
-  padding: 1rem;
-  margin: 0.5rem -0.8rem;
-  cursor: pointer;
-  border-radius: 1rem;
-  transition: color, background-color 0.3s ease-in-out;
-  color: #20639B;
-} */
 
 .btn-add {
-   
+    font-size: 14px;
     position: absolute;
     bottom: 170px;
     right: 10px;
@@ -134,27 +117,27 @@ body {
     text-transform: uppercase;
     display: flex;
     text-align: center;
-    
+
 }
 
 .add-note {
     margin-left: 50px;
     padding: 16px 0;
-    min-width: 150px;
-    max-width: 150px;
+    min-width: 120px;
+    max-width: 120px;
     border: 2px solid #20639B;
     color: #20639B;
     background-color: transparent;
 }
 
 .add-icon {
-    height: 20px;
-    width: 20px;
-    margin: 0 6px 0 6px;
+    height: 16px;
+    width: 16px;
+    margin: 0 4px 0 6px;
 }
 
 .btn-save {
-    
+    font-size: 14px;
     position: absolute;
     bottom: 90px;
     right: 10px;
@@ -175,11 +158,19 @@ body {
     background-color: transparent;
     border: 2px solid #20639B;
     color: #20639B;
-    min-width: 150px;
-    max-width: 150px;
+    min-width: 120px;
+    max-width: 120px;
+}
+
+.save-icon {
+    height: 16px;
+    width: 16px;
+    margin: 0 14px 0 0;
+    align-items: left;
 }
 
 .btn-delete {
+    font-size: 14px;
     position: absolute;
     bottom: 10px;
     right: 10px;
@@ -198,14 +189,14 @@ body {
     background-color: transparent;
     border: 2px solid red;
     color: red;
-    min-width: 150px;
-    max-width: 150px;
+    min-width: 120px;
+    max-width: 120px;
 }
 
 .delete-icon {
-    height: 20px;
-    width: 20px;
-    margin: 0 14px 0 14px;
+    height: 18px;
+    width: 18px;
+    margin: 0 10px 0 12px;
 }
 
 .note-body {
@@ -226,14 +217,6 @@ body {
     text-transform: uppercase;
     letter-spacing: 1px;
 }
-
-/* .main .capital {
-    text-transform: uppercase;
-} 
-.main-img {
-    max-width: 90%;
-    object-fit: none;
-}*/
 
 input[type="checkbox"] {
     display: none;
@@ -304,12 +287,12 @@ label {
     max-width: 75%;
     letter-spacing: 1px;
     color: #20639B;
-    font-size: 20px;
-    font-weight: bold;
+    font-size: 22px;
     border: none;
     background-color: transparent;
     font-family: 'Source Sans Pro', sans-serif;
 }
+
 .text-body {
     height: 60vh;
     width: 160%;
@@ -319,39 +302,24 @@ label {
     max-width: 75%;
     letter-spacing: 1px;
     color: #20639B;
-    font-size: medium;
+    font-size: 16px;
     border: none;
     resize: none;
     display: block;
     background-color: transparent;
     font-family: 'Source Sans Pro', sans-serif;
-   
+
 }
-.text-title, 
+
+.text-title,
 .text-body:focus {
     outline: none;
-    /* min-width: 0; */
 }
 
 .text-title::placeholder {
     color: #20639B;
 }
+
 .text-body::placeholder {
     color: #20639B;
 }
-
-/* .test1 {
-    height: 10px;
-    width: 10px;
-    background-color: #fce38a;
-    border-radius: 50%;
-    padding: 10px;
-}
-
-.test2 {
-    height: 10px;
-    width: 10px;
-    background-color: #63500c;
-    border-radius: 50%;
-    padding: 10px;
-} */
