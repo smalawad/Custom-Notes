@@ -228,7 +228,7 @@ label {
     position: absolute;
     margin: 20px 40px 0 0;
     top: 10px;
-    right: 20px;
+    right: 10px;
     border: 2px solid rgb(59, 153, 241);
     border-radius: 30px;
     padding: 10px;
@@ -274,10 +274,10 @@ label {
     transform: translateX(-25px);
 }
 
-#switch-button:checked~.content {
+/* #switch-button:checked~.content {
     background: #181d22;
     color: #5cbbeb;
-}
+} */
 
 .text-title {
     height: 0.7vh;
