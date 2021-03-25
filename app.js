@@ -6,6 +6,8 @@ const selectNotesEvent = document.querySelector(".notes-container");
 const newNotesEvent = document.querySelector(".add-note");
 const saveNotesEvent = document.querySelector(".save-note");
 const deleteNotesEvent = document.querySelector(".delete-note");
+// const bodyColor = document.querySelector(".note-body");
+
 
 // Events
 document.addEventListener("DOMContentLoaded", getNotes);
@@ -14,8 +16,15 @@ saveNotesEvent.addEventListener("click", saveNotes);
 selectNotesEvent.addEventListener("click", selectedNotes);
 deleteNotesEvent.addEventListener("click", deleteNotes);
 
+var notes = [];
+
 // functions
 function createNote (newNote) {
+    var newData = {};
+
+    // newData = Object.assign(newNote);
+
+    newData = {title: newNote.title, note: newNote.note};
     // Notes DIV
     const notesDiv = document.createElement("div");
     notesDiv.classList.add("main-container");
@@ -23,15 +32,23 @@ function createNote (newNote) {
     // Create heading
     const notesTitle = document.createElement("div");
     notesTitle.classList.add("notes-title");
-    notesTitle.innerText = newNote.title ;
+    notesTitle.innerText = newData.title ;
     notesDiv.appendChild(notesTitle);
 
     // Create para
     const newNotes = document.createElement("p");
     newNotes.classList.add("notes-item");
-    newNotes.innerText = newNote.note ;
+    newNotes.innerText = newData.note ;
     notesTitle.appendChild(newNotes);
     
+
+    // console.log(newNote);
+    // console.log(newNote.title);
+    // console.log(newNote.note);
+    // console.log(newData.title);
+    // console.log(newData.note);
+    // console.log(notesTitle.innerText);
+    // console.log(newNotes.innerText);
     // APPEND TO LIST (div)
     notesList.appendChild(notesDiv);
 }
@@ -60,6 +77,7 @@ function selectedNotes (event){
         var selnotes = [];
         selnotes = Object.assign({}, notes[selindex]);
 
+        // console.log(selnotes);
         // console.log(selindex);
         notesHeading.value = selnotes.title;
         notesBody.value = selnotes.note;
@@ -70,8 +88,8 @@ function selectedNotes (event){
             if(noteIndex === selindex) {
                 title.style.backgroundColor = "#7fb9e9";
             }
-            // console.log({title});
-            // } else {
+            
+            // else {
             //     title.style.backgroundColor = "#7fb9e9";
             //     console.log("change background color");
             // }
@@ -93,31 +111,45 @@ function defaultNotes() {
     var notes = [];
 
     // alert("defaultnote!");
-    note.title = "Welcome to NoteShelf!";
-    note.note = "The custom notes, you can add, edit and delete notes here";
-    createNote (note);
+    notes = [
+        {
+            title: "Welcome to NoteShelf!",
+            note: "The custom notes, you can add, edit and delete notes here",
+        },
+    ];
 
-    notes.push(note);
+    createNote (notes);
 
-    loadEmptyNotes();
+    notesHeading.value = notes.title;
+    notesBody.value = notes.note;
+    // notes.push(note);
+
+    // console.log(notes);
+    localStorage.setItem("notes", JSON.stringify(notes));
+    // loadEmptyNotes();
 }
 // load notes from localstorage
 function getNotes() {
     // If local storage is empty than load new notes with untitled - title and notes body with notes.
-    var notes;
+    var notes = [];
+    var note = [];
 
-    defaultNotes();
+    // defaultNotes();
     
-    if (localStorage.getItem("notes") == null) {
-        notes = [];
+    notes = JSON.parse(localStorage.getItem("notes")); 
+    if( notes == null || notes.length == 0) {
+        
+        defaultNotes();
     } else {
         notes = JSON.parse(localStorage.getItem("notes"));
+
+        notes.forEach((note) => {        
+            createNote(note);
+        
+        });
     }
+        
     
-    notes.forEach((note) => {        
-        createNote(note);
-    
-    });
 }
 // save notes to localstorage
 function saveNotes() {
@@ -153,16 +185,10 @@ function saveNotes() {
 }
 
 function addNotes() {
-    var newNote = {};
-
+    
     if(notesHeading.value === "" || notesBody.value === "") {
         alert("Empty notes is already open!");
-
     } else {
-        newNote = {title: notesHeading.value, note: notesBody.value};
-        createNote(newNote);
-
-        // Clear the notes area for new notes
         loadEmptyNotes();
     }
 }
@@ -198,6 +224,8 @@ function deleteNotes(event) {
         alert("Please select a notes you want to delete");
     } else {
         var index = notes.findIndex(item => item.note === delnote);
-        removeNotes(index);
+        if(index !== 0) {
+            removeNotes(index);
+        }
     }    
 }
