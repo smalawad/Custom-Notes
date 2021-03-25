@@ -1,1 +1,3 @@
-# SMalawad-NoteShelf.netlify.app
+# The project link:
+https://smalawad-notesshelf.netlify.app/
+
