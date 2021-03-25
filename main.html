@@ -10,11 +10,7 @@
 </head>
 
 <body class="note-body">
-    <input type="checkbox" id="switch-button">
-    <label for="switch-button">
-        <i class="day-mode"> day</i>
-        <i class="night-mode"> night</i>
-    </label>
+
     <div class="content">
 
         <div class="main">
@@ -26,22 +22,28 @@
                 <textarea class="text-body" type="text" placeholder="Create Notes"></textarea><br />
             </div>
 
-            <div class="btn-add add-note">
+            <section calss="btn-flex">
+                <input type="checkbox" id="switch-button">
+                <label for="switch-button">
+                    <i class="day-mode"> day</i>
+                    <i class="night-mode"> night</i>
+                </label>
+                <div class="btn-add add-note">
 
-                <img src="images/plus.svg" class="add-icon" alt="new notes">
-                <span>New Note</span>
+                    <img src="images/plus.svg" class="add-icon" alt="new notes">
+                    <span>New Note</span>
 
-            </div>
-            <div class="btn-delete delete-note">
-                <img src="images/delete.svg" class="delete-icon" alt="delete notes">
-                <span>Delete</span>
+                </div>
+                <div class="btn-delete delete-note">
+                    <img src="images/delete.svg" class="delete-icon" alt="delete notes">
+                    <span>Delete</span>
 
-            </div>
-            <div class="btn-save save-note">
-                <img src="images/save.svg" class="save-icon" alt="save notes">
-                <span>Save</span>
-            </div>
-
+                </div>
+                <div class="btn-save save-note">
+                    <img src="images/save.svg" class="save-icon" alt="save notes">
+                    <span>Save</span>
+                </div>
+            </section>
         </div>
         <div class="sidebar">
             <h2> Notes </h2>

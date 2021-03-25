@@ -200,6 +200,10 @@ body {
     margin: 0 10px 0 12px;
 }
 
+.btn-flex {
+    display: flex;
+    flex-direction: column-reverse;
+}
 .note-body {
     background-color: #EDFBFB;
     overflow: hidden;
